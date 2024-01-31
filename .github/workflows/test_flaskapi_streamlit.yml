@@ -28,12 +28,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r app/requirements.txt
           pip install -r frontend/requirements.txt
-
-      - name: Create and initialize database
-        run: |
-          mysql -h 127.0.0.1 -P 3307 -u root -proot -e "CREATE DATABASE IF NOT EXISTS labdata;"
-          mysql -h 127.0.0.1 -P 3307 -u root -proot labdata < app/db/init.sql
-
+          
       - name: Run Flask API tests
         working-directory: app
         run: pytest tests/

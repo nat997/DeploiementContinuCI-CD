@@ -1,16 +1,9 @@
-import pytest
-from app import app
+from fastapi.testclient import TestClient
+from .app import app
 
-@pytest.fixture
-def client():
-    app.config['TESTING'] = True
-    with app.test_client() as client:
-        yield client
+client = TestClient(app)
 
-def test_index_route(client):
-    response = client.get('/')
+def test_read_main():
+    response = client.get("/")
     assert response.status_code == 200
-    assert b'Degree Data' in response.data
-    assert b'Timestamp Data' in response.data
-
-
+    assert response.json() == {"message": "OK"}
