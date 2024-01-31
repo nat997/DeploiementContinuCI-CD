@@ -26,4 +26,4 @@ jobs:
       - name: Set up MySQL schema and data
         run: |
           mysql -h 127.0.0.1 -P 3307 -u root -proot -e "CREATE DATABASE labdata;"
-          mysql -h 127.0.0.1 -P 3307 -u root -proot labdata < path/to/your/init.sql
+          mysql -h 127.0.0.1 -P 3307 -u root -proot labdata < db/init.sql
