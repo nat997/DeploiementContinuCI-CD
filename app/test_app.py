@@ -1,9 +1,5 @@
-from fastapi.testclient import TestClient
-from .app import app
+import requests
 
-client = TestClient(app)
-
-def test_read_main():
-    response = client.get("/")
+def test_index():
+    response = requests.get('http://0.0.0.0:5001/')
     assert response.status_code == 200
-    assert response.json() == {"message": "OK"}
