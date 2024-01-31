@@ -31,4 +31,5 @@ jobs:
     - name: Run backend tests
       run: |
         cd app
+        pip install pytest pytest-cov
         pytest
