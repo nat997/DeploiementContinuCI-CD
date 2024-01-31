@@ -29,6 +29,6 @@ jobs:
           mysql -h 127.0.0.1 -P 3307 -u root -proot labdata < db/init.sql
 
       - name: Set Up Secrets
-          run: |
-            echo "MYSQL_USER=root" >> $GITHUB_ENV
-            echo "MYSQL_PASSWORD=root" >> $GITHUB_ENV
+        run: |
+          echo "MYSQL_USER=root" >> $GITHUB_ENV
+          echo "MYSQL_PASSWORD=root" >> $GITHUB_ENV
