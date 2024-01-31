@@ -1,0 +1,27 @@
+name: Frontend Server Workflow
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install -r frontend/requirements.txt
+
+    - name: Run Streamlit Server
+      run: |
+        cd frontend
+        streamlit run streamlit.py
