@@ -30,4 +30,4 @@ jobs:
           
       - name: Run Flask API tests
         working-directory: app
-        run: pytest app.py
+        run: pytest test_app.py
