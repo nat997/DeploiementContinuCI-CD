@@ -2,10 +2,9 @@ name: Build Backend Docker Image
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'app/**'
-      - 'docker-compose.yml'
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:

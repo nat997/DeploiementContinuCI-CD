@@ -2,11 +2,10 @@ name: Build Frontend Docker Image
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'frontend/**'
-      - 'docker-compose.yml'
-
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
 jobs:
   build:
     runs-on: ubuntu-latest
