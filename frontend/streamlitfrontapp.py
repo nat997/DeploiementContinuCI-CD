@@ -4,10 +4,20 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Make a GET request to your Flask API to fetch data
+def fetch_data(api_url):
+    response = requests.get(api_url)
+    return response.json()
+
+def process_data(data):
+    degree_data = pd.DataFrame(data["Degree Data"], columns=["Degree ID", "Degree Value"])
+    timestamp_data = pd.DataFrame(data["Timestamp Data"], columns=["Timestamp ID", "Timestamp"])
+    timestamp_data["Timestamp"] = pd.to_datetime(timestamp_data["Timestamp"])
+    return degree_data, timestamp_data
+
+# Main Streamlit app logic
 api_url = "http://app:5000/"
-response = requests.get(api_url)
-data = response.json()
+data = fetch_data(api_url)
+degree_data, timestamp_data = process_data(data)
 
 # Create a DataFrame from the degree and timestamp data
 degree_data = pd.DataFrame(data["Degree Data"], columns=["Degree ID", "Degree Value"])
