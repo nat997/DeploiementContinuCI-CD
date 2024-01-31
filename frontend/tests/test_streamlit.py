@@ -1,5 +1,5 @@
 import streamlit as st
-from your_streamlit_app_file import main  # Import your Streamlit app's main function
+from .. import streamlit as main # Import your Streamlit app's main function
 
 def test_streamlit_app():
     # Create a Streamlit testing context
