@@ -27,8 +27,8 @@ jobs:
 
       - name: Run Flask API tests
         working-directory: app
-        run: pytest tests/
+        run: pytest 
 
       - name: Run Streamlit app tests
         working-directory: frontend
-        run: pytest tests/
+        run: pytest 
