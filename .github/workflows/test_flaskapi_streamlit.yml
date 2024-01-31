@@ -10,6 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      MYSQL_USER: ${{ secrets.MYSQL_USER }}
+      MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+
     steps:
       - name: Check out code
         uses: actions/checkout@v2
@@ -25,10 +29,15 @@ jobs:
           pip install -r app/requirements.txt
           pip install -r frontend/requirements.txt
 
+      - name: Create and initialize database
+        run: |
+          mysql -h 127.0.0.1 -P 3306 -u $MYSQL_USER -p$MYSQL_PASSWORD -e "CREATE DATABASE IF NOT EXISTS labdata;"
+          mysql -h 127.0.0.1 -P 3306 -u $MYSQL_USER -p$MYSQL_PASSWORD labdata < app/db/init.sql
+
       - name: Run Flask API tests
         working-directory: app
-        run: pytest test_app.py
+        run: pytest tests/
 
       - name: Run Streamlit app tests
         working-directory: frontend
-        run: pytest test_streamlit.py
+        run: pytest tests/
