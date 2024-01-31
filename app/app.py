@@ -33,8 +33,14 @@ def fetch_timestamp_data():
 
 @app.route('/')
 def index():
-    degree_data = fetch_degree_data()
-    timestamp_data = fetch_timestamp_data()
+    try:
+        degree_data = fetch_degree_data()
+        timestamp_data = fetch_timestamp_data()
+    except mysql.connector.Error as err:
+        # Return a mock response or error message if the database is unreachable
+        degree_data = 'Database connection failed'
+        timestamp_data = 'Database connection failed'
+
     response = {
         'Degree Data': degree_data,
         'Timestamp Data': timestamp_data
