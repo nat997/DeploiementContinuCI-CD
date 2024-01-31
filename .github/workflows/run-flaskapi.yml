@@ -33,5 +33,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Run Flask API
       run: |
-        cd DeploiementContinuCI-CD/app
+        cd $GITHUB_WORKSPACE/app
         python app.py
