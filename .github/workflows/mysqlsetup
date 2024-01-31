@@ -1,0 +1,21 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:5.7
+        ports:
+          - 3307:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+
+      - name: Set up MySQL schema and data
+        run: |
+          mysql -h 127.0.0.1 -P 3307 -u root -proot -e "CREATE DATABASE labdata;"
+          mysql -h 127.0.0.1 -P 3307 -u root -proot labdata < path/to/your/init.sql
