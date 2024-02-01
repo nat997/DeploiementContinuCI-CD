@@ -46,7 +46,7 @@ https://hub.docker.com/repository/docker/nat997/autodeployfromgithubtest/general
 - Les tests backend et frontend sont automatiquement exécutés via GitHub Actions à chaque push ou pull request sur la branche principale.
 
 ## Organigramme l'interaction 
-![Untitled Diagram drawio](https://github.com/nat997/DeploiementContinuCI-CD/assets/67456959/402c0831-493b-4c8e-8549-96200495f270)
+![image](https://github.com/nat997/DeploiementContinuCI-CD/assets/67456959/9f20e3ab-df08-4fea-b1ac-96e70e011bf0)
 
 ## Demonstation clone git et lancement d'application
 ![README md-Project-VisualStudioCode2024-01-3119-17-31-ezgif com-crop](https://github.com/nat997/DeploiementContinuCI-CD/assets/67456959/083bfb64-2151-49d6-9cc9-9a8fc332000c)
