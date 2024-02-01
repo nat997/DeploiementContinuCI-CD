@@ -12,7 +12,7 @@ def client():
 @patch('app.fetch_timestamp_data')
 def test_index_page(mock_fetch_timestamp_data, mock_fetch_degree_data, client):
     # Mock the database response
-    mock_fetch_degree_data.return_value = [[1, 10.5], [2, 20.7]]  # Assuming these are the kinds of values returned
+    mock_fetch_degree_data.return_value = [[1, 10.5], [2, 20.7]]  
     mock_fetch_timestamp_data.return_value = [[1, '2021-01-01 00:00:00'], [2, '2021-01-02 00:00:00']]
 
     # Make a request to the Flask app
