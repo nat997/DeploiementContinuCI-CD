@@ -26,6 +26,7 @@ jobs:
 
     - name: Run Streamlit in background
       run: |
+        cd frontend
         streamlit run streamlitfrontapp.py --server.headless true --server.enableCORS false --server.port 8501 &
         sleep 10  # Allow some time for the server to start
         if ! pgrep -f streamlit; then
