@@ -7,7 +7,7 @@ Ce dépôt contient une application Docker multi-conteneurs, composée d'un back
 [![Configuration MYSQL](https://github.com/nat997/DeploiementContinuCI-CD/actions/workflows/mysqlsetup.yml/badge.svg)](https://github.com/nat997/DeploiementContinuCI-CD/actions/workflows/mysqlsetup.yml)
 [![Construction de l'Image Docker Frontend](https://github.com/nat997/DeploiementContinuCI-CD/actions/workflows/frontend_build.yml/badge.svg)](https://github.com/nat997/DeploiementContinuCI-CD/actions/workflows/frontend_build.yml)
 [![Construction de l'Image Docker Backend](https://github.com/nat997/DeploiementContinuCI-CD/actions/workflows/backend_build.yml/badge.svg)](https://github.com/nat997/DeploiementContinuCI-CD/actions/workflows/backend_build.yml)
-
+[![FlaskAPI TEST](https://github.com/nat997/DeploiementContinuCI-CD/actions/workflows/test_flaskapi.yml/badge.svg)](https://github.com/nat997/DeploiementContinuCI-CD/actions/workflows/test_flaskapi.yml)
 ## Structure du Projet
 
 - `frontend/` : Contient l'application frontend Streamlit.
