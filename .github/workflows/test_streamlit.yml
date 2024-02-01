@@ -17,16 +17,19 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8' 
+        python-version: '3.8'  # Set this to your Python version
 
     - name: Install dependencies
       run: |
-        pip install requests
         python -m pip install --upgrade pip
-        pip install -r frontend/requirements.txt
+        pip install streamlit pandas numpy matplotlib requests
 
-    - name: Check Streamlit file
+    - name: Run Streamlit in background
       run: |
-        cd frontend
-        streamlit run streamlitfrontapp.py --server.headless true --server.enableCORS false --server.port 8501
-
+        streamlit run streamlitfrontapp.py --server.headless true --server.enableCORS false --server.port 8501 &
+        sleep 10  # Allow some time for the server to start
+        if ! pgrep -f streamlit; then
+          echo "Streamlit app failed to start"
+          exit 1
+        fi
+      timeout-minutes: 2
