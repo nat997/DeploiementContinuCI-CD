@@ -3,3 +3,4 @@ mysql-connector
 pytest
 httpx
 fastapi
+mock
