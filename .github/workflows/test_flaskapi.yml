@@ -9,26 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    services:
-      docker:
-        image: docker:19.03.12
-        options: --privileged
-        ports:
-          - 5001:5001
-          - 32000:3306
-
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-
-      - name: Set up Docker
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y docker-compose
-
-      - name: Start Docker Compose services
-        run: docker-compose up -d
 
       - name: Set up Python 3.10
         uses: actions/setup-python@v2
@@ -45,5 +28,3 @@ jobs:
         working-directory: app
         run: pytest test_app.py
 
-      - name: Shutdown Docker Compose services
-        run: docker-compose down
