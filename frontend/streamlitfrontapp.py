@@ -8,35 +8,44 @@ def fetch_data(api_url):
     response = requests.get(api_url)
     return response.json()
 
-def process_data(data):
-    degree_data = pd.DataFrame(data["Degree Data"], columns=["Degree ID", "Degree Value"])
-    timestamp_data = pd.DataFrame(data["Timestamp Data"], columns=["Timestamp ID", "Timestamp"])
+# Split the process_data function into two to handle degree and timestamp data separately
+def process_degree_data(data):
+    degree_data = pd.DataFrame(data, columns=["Degree ID", "Degree Value"])
+    return degree_data
+
+def process_timestamp_data(data):
+    timestamp_data = pd.DataFrame(data, columns=["Timestamp ID", "Timestamp"])
     timestamp_data["Timestamp"] = pd.to_datetime(timestamp_data["Timestamp"])
-    return degree_data, timestamp_data
+    return timestamp_data
 
-# Main Streamlit app logic
-api_url = "http://app:5000/"
-data = fetch_data(api_url)
-degree_data, timestamp_data = process_data(data)
+# Define API URLs for degree and timestamp data
+api_url_degree = "http://app:5000/degree"
+api_url_timestamp = "http://app:5000/timestamp"
 
-# Create a DataFrame from the degree and timestamp data
-degree_data = pd.DataFrame(data["Degree Data"], columns=["Degree ID", "Degree Value"])
-timestamp_data = pd.DataFrame(data["Timestamp Data"], columns=["Timestamp ID", "Timestamp"])
+# Fetch and process degree data
+degree_data_json = fetch_data(api_url_degree)
+degree_data = process_degree_data(degree_data_json["Degree Data"])
 
-# Convert Timestamp column to datetime
-timestamp_data["Timestamp"] = pd.to_datetime(timestamp_data["Timestamp"])
+# Fetch and process timestamp data
+timestamp_data_json = fetch_data(api_url_timestamp)
+timestamp_data = process_timestamp_data(timestamp_data_json["Timestamp Data"])
 
-# Extract data as numpy arrays for plotting
-timestamps = timestamp_data["Timestamp"].values
-degree_values = degree_data["Degree Value"].values
+# Ensure that the length of both datasets is the same for plotting (or handle discrepancies appropriately)
+min_length = min(len(degree_data), len(timestamp_data))
+degree_values = degree_data["Degree Value"].values[:min_length]
+timestamps = timestamp_data["Timestamp"].values[:min_length]
 
 # Create a Streamlit chart using Matplotlib
 st.title("Degree vs Timestamp Chart")
 fig, ax = plt.subplots()
-ax.plot(timestamps, degree_values)
+ax.plot(timestamps, degree_values, marker='o')  # Added marker for better visualization
 ax.set_xlabel("Timestamp")
 ax.set_ylabel("Degree Value")
 ax.set_title("Degree vs Timestamp")
+
+# Rotate date labels for better readability
+plt.xticks(rotation=45)
+plt.tight_layout()
 
 # Display the chart in Streamlit
 st.pyplot(fig)

@@ -1,3 +1,4 @@
 # Ignore MySQL socket file
 data/mysql.sock
 dockerhub-docker-compose/data/mysql.sock
+my.serects.env

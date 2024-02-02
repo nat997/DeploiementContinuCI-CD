@@ -31,21 +31,25 @@ def fetch_timestamp_data():
     connection.close()
     return results
 
-@app.route('/')
-def index():
+@app.route('/degree')
+def degree():
     try:
         degree_data = fetch_degree_data()
-        timestamp_data = fetch_timestamp_data()
     except mysql.connector.Error as err:
         # Return a mock response or error message if the database is unreachable
         degree_data = 'Database connection failed'
+
+    return jsonify({'Degree Data': degree_data})
+
+@app.route('/timestamp')
+def timestamp():
+    try:
+        timestamp_data = fetch_timestamp_data()
+    except mysql.connector.Error as err:
+        # Return a mock response or error message if the database is unreachable
         timestamp_data = 'Database connection failed'
 
-    response = {
-        'Degree Data': degree_data,
-        'Timestamp Data': timestamp_data
-    }
-    return jsonify(response)
+    return jsonify({'Timestamp Data': timestamp_data})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
