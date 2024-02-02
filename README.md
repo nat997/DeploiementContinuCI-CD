@@ -61,7 +61,7 @@ https://hub.docker.com/repository/docker/nat997/autodeployfromgithubtest/general
 
 Pour documenter votre projet en français, incluant l'API Flask, le Dockerfile, et l'application Streamlit, ainsi que la configuration Docker Compose, voici une ébauche de documentation concise et claire. Cette documentation est destinée à expliquer les différents points d'entrée (endpoints) de votre application, les requêtes HTTP supportées (GET), les ports exposés, et la structure générale de votre projet.
 
-### Documentation de l'API Flask
+# Documentation de l'API Flask
 L'API Flask fournit deux endpoints principaux pour accéder aux données :
 
 GET /degree : Renvoie les données des diplômes depuis la base de données. Chaque entrée contient un identifiant de diplôme et sa valeur correspondante.
