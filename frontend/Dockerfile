@@ -12,6 +12,7 @@ RUN pip install -r requirements.txt
 
 # Expose the port
 EXPOSE 8501
-
+EXPOSE 443
+EXPOSE 80
 # Run the Streamlit app when the container launches
 CMD ["streamlit", "run", "streamlitfrontapp.py"]
